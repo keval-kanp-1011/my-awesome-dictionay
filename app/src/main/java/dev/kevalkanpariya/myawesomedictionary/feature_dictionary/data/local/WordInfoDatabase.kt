@@ -7,7 +7,7 @@ import dev.kevalkanpariya.myawesomedictionary.feature_dictionary.data.local.enti
 
 @Database(
     entities = [WordInfoEntity::class],
-    version = 2
+    version = 1
 )
 @TypeConverters(Converters::class)
 abstract class WordInfoDatabase: RoomDatabase() {

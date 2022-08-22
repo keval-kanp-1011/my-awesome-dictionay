@@ -3,13 +3,15 @@ package dev.kevalkanpariya.myawesomedictionary.feature_dictionary.data.local.ent
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import dev.kevalkanpariya.myawesomedictionary.feature_dictionary.domain.model.Meaning
+import dev.kevalkanpariya.myawesomedictionary.feature_dictionary.domain.model.Phonetic
 import dev.kevalkanpariya.myawesomedictionary.feature_dictionary.domain.model.WordInfo
 
 
 @Entity
 data class WordInfoEntity(
     val meanings: List<Meaning>,
-    val phonetic: String,
+    val phonetic: String?,
+    val phonetics: List<Phonetic>,
     val word: String,
     @PrimaryKey val id: Int? = null
 ) {
@@ -17,6 +19,7 @@ data class WordInfoEntity(
         return WordInfo(
             meanings = meanings,
             phonetic = phonetic,
+            phonetics = phonetics,
             word = word
         )
     }

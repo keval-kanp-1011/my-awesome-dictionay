@@ -66,6 +66,13 @@ class WordInfoViewModel @Inject constructor(
                 }.launchIn(this)
         }
     }
+    /*fun OnClickAudio(wordInfo: WordInfo) {
+        lateinit var player: MediaPlayer
+        player.setAudioStreamType(AudioManager.STREAM_MUSIC)
+        player.setDataSource(phonetic.audio)
+        player.prepare()
+        player.start()
+    }*/
 
     sealed class UIEvent {
         data class ShowSnackbar(val message: String): UIEvent()

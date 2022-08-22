@@ -6,19 +6,25 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import dev.kevalkanpariya.myawesomedictionary.feature_dictionary.presentation.Drawer
 import dev.kevalkanpariya.myawesomedictionary.feature_dictionary.presentation.WordInfoItem
 import dev.kevalkanpariya.myawesomedictionary.feature_dictionary.presentation.WordInfoViewModel
 import dev.kevalkanpariya.myawesomedictionary.ui.theme.MyAwesomeDictionaryTheme
+import dev.kevalkanpariya.myawesomedictionary.ui.theme.Shapes
 import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
@@ -44,7 +50,10 @@ class MainActivity : ComponentActivity() {
                 }
 
                 Scaffold(
-                    scaffoldState = scaffoldState
+                    scaffoldState = scaffoldState,
+                    drawerContent = {
+                        Drawer()
+                    }
                 ) {
                     Box(
                         modifier = Modifier
@@ -60,10 +69,18 @@ class MainActivity : ComponentActivity() {
                             TextField(
                                 value = viewModel.searchQuery.value,
                                 onValueChange = viewModel::onSearch,
-                                modifier = Modifier.fillMaxWidth(),
+                                label = null,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clip(Shapes.medium),
                                 placeholder = {
                                     Text(text = "Search...")
-                                }
+                                },
+                                singleLine = true,
+                                keyboardOptions = KeyboardOptions(
+                                    keyboardType = KeyboardType.Text,
+                                    imeAction = ImeAction.Search
+                                )
                             )
                             Spacer(modifier = Modifier.height(16.dp))
                             LazyColumn(

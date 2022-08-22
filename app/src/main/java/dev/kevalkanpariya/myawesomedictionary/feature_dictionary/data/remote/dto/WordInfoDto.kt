@@ -5,7 +5,7 @@ import dev.kevalkanpariya.myawesomedictionary.feature_dictionary.data.local.enti
 data class WordInfoDto(
     val license: LicenseDto,
     val meanings: List<MeaningDto>,
-    val phonetic: String,
+    val phonetic: String?,
     val phonetics: List<PhoneticDto>,
     val sourceUrls: List<String>,
     val word: String
@@ -14,6 +14,7 @@ data class WordInfoDto(
         return WordInfoEntity(
             meanings = meanings.map { it.toMeaning() },
             phonetic = phonetic,
+            phonetics = phonetics.map { it.toPhonetic() },
             word = word
         )
     }
