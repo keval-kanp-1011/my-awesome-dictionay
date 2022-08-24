@@ -15,6 +15,7 @@ import dev.kevalkanpariya.myawesomedictionary.R
 @Preview
 @Composable
 fun Drawer() {
+
     Column(modifier = Modifier.padding(10.dp)) {
         Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
             Icon(painter = painterResource(id = R.drawable.ic_settings), contentDescription = null)
